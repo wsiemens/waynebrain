@@ -49,6 +49,11 @@ Each project has its own Dockerfile and is built from its sibling directory. The
 - `C:/Users/wayne/Documents/NinjaTrader 8/db/minute` — NinjaTrader data (ninja)
 - Docker named volume `arbitrage-mysql` — MySQL persistence for arbitrage
 
+## Future Ideas
+
+### Reverse proxy on port 80
+Currently each service has its own port. An alternative is to route all traffic through the existing nginx container on port 80 using path prefixes (`/quicken/`, `/insiders/`, etc.) or subdomains. The apps would still run in separate containers (keep isolation and independent deploys) but users access everything via a single URL. nginx handles prefix stripping so no app code changes are needed. Tradeoff: path-prefix routing can break apps that hardcode absolute URLs internally.
+
 ## Notes
 
 - Stop individual project docker-compose instances before running this to avoid port conflicts.
