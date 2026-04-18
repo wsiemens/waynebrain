@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>WayneBrain</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #0d1117;
+      color: #e6edf3;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 60px 24px;
+    }
+    header { text-align: center; margin-bottom: 56px; }
+    header h1 { font-size: 32px; font-weight: 700; letter-spacing: -0.5px; margin-bottom: 8px; }
+    header p { color: #7d8590; font-size: 15px; }
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
+      width: 100%;
+      max-width: 960px;
+    }
+    a.card {
+      background: #161b22;
+      border: 1px solid #30363d;
+      border-radius: 12px;
+      padding: 28px 24px;
+      text-decoration: none;
+      color: inherit;
+      transition: border-color 0.15s, background 0.15s;
+      display: block;
+    }
+    a.card:hover { border-color: #58a6ff; background: #1c2128; }
+    .card-icon { font-size: 28px; margin-bottom: 12px; }
+    .card h2 { font-size: 17px; font-weight: 600; margin-bottom: 6px; }
+    .card p { font-size: 13px; color: #7d8590; line-height: 1.5; }
+    .card .port { margin-top: 14px; font-size: 11px; color: #484f58; font-family: monospace; }
+    footer { margin-top: 64px; font-size: 12px; color: #484f58; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>WayneBrain</h1>
+    <p>All dashboards in one place</p>
+  </header>
+
+  <div class="grid">
+    <a class="card" href="http://localhost:8000" target="_blank">
+      <div class="card-icon">💰</div>
+      <h2>Quicken2</h2>
+      <p>Personal finance — accounts, transactions, and QIF import</p>
+      <div class="port">localhost:8000</div>
+    </a>
+
+    <a class="card" href="http://localhost:8001" target="_blank">
+      <div class="card-icon">📒</div>
+      <h2>Trade Journal</h2>
+      <p>Track and analyze trading performance across multiple brokers</p>
+      <div class="port">localhost:8001</div>
+    </a>
+
+    <a class="card" href="http://localhost:8002" target="_blank">
+      <div class="card-icon">🪙</div>
+      <h2>Crypto Dashboard</h2>
+      <p>Cryptocurrency portfolio tracking and transaction history</p>
+      <div class="port">localhost:8002</div>
+    </a>
+
+    <a class="card" href="http://localhost:8003" target="_blank">
+      <div class="card-icon">📈</div>
+      <h2>Ninja Strat</h2>
+      <p>NinjaTrader strategy analysis and backtesting results</p>
+      <div class="port">localhost:8003</div>
+    </a>
+
+    <a class="card" href="http://localhost:8004" target="_blank">
+      <div class="card-icon">⚡</div>
+      <h2>Squeeze Dashboard</h2>
+      <p>TTM Squeeze and momentum signals across sectors and stocks</p>
+      <div class="port">localhost:8004</div>
+    </a>
+
+    <a class="card" href="http://localhost:8005" target="_blank">
+      <div class="card-icon">🏦</div>
+      <h2>Sector Relative Strength</h2>
+      <p>Sector rotation analysis and relative strength rankings</p>
+      <div class="port">localhost:8005</div>
+    </a>
+  </div>
+
+  <footer>docker compose up — waynebrain</footer>
+</body>
+</html>

@@ -1,0 +1,64 @@
+services:
+
+  quicken:
+    build: ../quicken2
+    ports:
+      - "8000:8000"
+    volumes:
+      - ../quicken2/quicken2.db:/app/quicken2.db
+    restart: unless-stopped
+
+  tradejournal:
+    build: ../tradejournal
+    ports:
+      - "8001:8000"
+    volumes:
+      - ../tradejournal/tradejournal.db:/app/tradejournal.db
+      - ../tradejournal/uploads:/app/uploads
+    restart: unless-stopped
+
+  crypto:
+    build: ../CryptoDashboard
+    ports:
+      - "8002:8002"
+    volumes:
+      - C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database:/data
+    environment:
+      - DB_PATH=/data/crypto.duckdb
+    restart: unless-stopped
+
+  ninja:
+    build: ../ninja_strat
+    ports:
+      - "8003:8003"
+    volumes:
+      - C:/Users/wayne/Documents/NinjaTrader 8/db/minute:/data:ro
+    environment:
+      - NINJA_DB_ROOT=/data
+    restart: unless-stopped
+
+  squeeze:
+    build: ../SqueezeDashboard
+    ports:
+      - "8004:8000"
+    volumes:
+      - C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database:/data:ro
+    environment:
+      - DB_PATH=/data/qsconnect.duckdb
+    restart: unless-stopped
+
+  sector:
+    build: ../SectorRelativeStrength/dashboard
+    ports:
+      - "8005:8000"
+    volumes:
+      - C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database:/data:ro
+    environment:
+      - DB_PATH=/data/qsconnect.duckdb
+    restart: unless-stopped
+
+  landing:
+    build: ./nginx
+    ports:
+      - "80:80"
+    restart: unless-stopped
