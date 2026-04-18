@@ -20,6 +20,8 @@ Then open http://localhost.
 | Ninja Strat | http://localhost:8003 |
 | Squeeze Dashboard | http://localhost:8004 |
 | Sector Relative Strength | http://localhost:8005 |
+| Arbitrage | http://localhost:8006 |
+| Insider Watch | http://localhost:8007 |
 
 ## Requirements
 

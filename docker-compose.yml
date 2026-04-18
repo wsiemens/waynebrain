@@ -57,8 +57,53 @@ services:
       - DB_PATH=/data/qsconnect.duckdb
     restart: unless-stopped
 
+  arbitrage-db:
+    image: mysql:8.0
+    environment:
+      MYSQL_ROOT_PASSWORD: arbitrage_password
+      MYSQL_DATABASE: arbitrage_db
+      MYSQL_USER: arbitrage_user
+      MYSQL_PASSWORD: arbitrage_password
+    volumes:
+      - arbitrage-mysql:/var/lib/mysql
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost"]
+      timeout: 5s
+      retries: 10
+    restart: unless-stopped
+
+  arbitrage:
+    build: ../arbitrage
+    ports:
+      - "8006:3000"
+    environment:
+      DB_HOST: arbitrage-db
+      DB_PORT: 3306
+      DB_USER: arbitrage_user
+      DB_PASSWORD: arbitrage_password
+      DB_NAME: arbitrage_db
+      PORT: 3000
+      NODE_ENV: production
+    depends_on:
+      arbitrage-db:
+        condition: service_healthy
+    restart: unless-stopped
+
+  insiders:
+    build: ../insiders
+    ports:
+      - "8007:9001"
+    volumes:
+      - C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database:/data/db
+    environment:
+      - DB_PATH=/data/db/insider.duckdb
+    restart: unless-stopped
+
   landing:
     build: ./nginx
     ports:
       - "80:80"
     restart: unless-stopped
+
+volumes:
+  arbitrage-mysql:
