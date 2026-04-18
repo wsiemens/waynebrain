@@ -45,6 +45,8 @@ services:
       - C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database:/data:ro
     environment:
       - DB_PATH=/data/qsconnect.duckdb
+      - OPTIONS_DB_PATH=/data/options.duckdb
+      - HSI_DB_PATH=/data/hsi.duckdb
     restart: unless-stopped
 
   sector:
