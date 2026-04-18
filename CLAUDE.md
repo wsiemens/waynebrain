@@ -12,6 +12,8 @@ Unified Docker Compose launcher for all WayneBrain dashboard projects.
 | ninja | 8003 | `../ninja_strat` |
 | squeeze | 8004 | `../SqueezeDashboard` |
 | sector | 8005 | `../SectorRelativeStrength` |
+| arbitrage | 8006 | `../arbitrage` |
+| insiders | 8007 | `../insiders` |
 | landing | 80 | `./nginx` (landing page only) |
 
 ## Commands
@@ -39,8 +41,9 @@ Each project has its own Dockerfile and is built from its sibling directory. The
 
 ## External Dependencies
 
-- `C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database/` — shared DuckDB volume (squeeze, sector, crypto)
+- `C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database/` — shared DuckDB volume (squeeze, sector, crypto, insiders)
 - `C:/Users/wayne/Documents/NinjaTrader 8/db/minute` — NinjaTrader data (ninja)
+- MySQL volume `arbitrage-mysql` — managed by Docker (arbitrage)
 
 ## Notes
 
