@@ -10,36 +10,41 @@ docker compose up -d
 
 Then open http://localhost.
 
-## Projects
+## Dashboards
 
-| Dashboard | URL |
-|-----------|-----|
-| Quicken2 | http://localhost:8000 |
-| Trade Journal | http://localhost:8001 |
-| Crypto Dashboard | http://localhost:8002 |
-| Ninja Strat | http://localhost:8003 |
-| Squeeze Dashboard | http://localhost:8004 |
-| Sector Relative Strength | http://localhost:8005 |
-| Arbitrage | http://localhost:8006 |
-| Insider Watch | http://localhost:8007 |
+| Dashboard | URL | Description |
+|-----------|-----|-------------|
+| Quicken2 | http://localhost:8000 | Personal finance — accounts, transactions, QIF import |
+| Trade Journal | http://localhost:8001 | Trading performance tracking across brokers |
+| Crypto Dashboard | http://localhost:8002 | Crypto portfolio and transaction history |
+| Ninja Strat | http://localhost:8003 | NinjaTrader strategy analysis and backtesting |
+| Squeeze Dashboard | http://localhost:8004 | TTM Squeeze, momentum signals, unusual options |
+| Sector Relative Strength | http://localhost:8005 | Sector rotation and relative strength rankings |
+| Arbitrage | http://localhost:8006 | Walmart/Amazon price gap and arbitrage opportunities |
+| Insider Watch | http://localhost:8007 | Insider buys — politicians (STOCK Act) and executives (Form 4) |
 
 ## Requirements
 
 - Docker Desktop
-- The following paths must exist on the host:
-  - `C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database/` (for squeeze, sector, crypto)
-  - `C:/Users/wayne/Documents/NinjaTrader 8/db/minute` (for ninja_strat)
+- Host paths that must exist:
+  - `C:/Users/wayne/QUANT-SCIENCE/QSAutomate/data/qsconnect/database/` — DuckDB files for squeeze, sector, crypto, insiders (`qsconnect.duckdb`, `options.duckdb`, `hsi.duckdb`, `insider.duckdb`)
+  - `C:/Users/wayne/Documents/NinjaTrader 8/db/minute` — NinjaTrader minute data
 
-## Rebuild after code changes
+## Commands
 
 ```bash
-docker compose up -d --build
-# or for a single service:
+# Start everything
+docker compose up -d
+
+# Restart a single service (picks up env/config changes)
+docker compose up -d squeeze
+
+# Rebuild after code changes
 docker compose up -d --build tradejournal
-```
 
-## Stop
-
-```bash
+# Stop everything
 docker compose down
+
+# View logs
+docker compose logs -f tradejournal
 ```
